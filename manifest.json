@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Presentation Link Extract Extension",
+  "description": "Extracts https links from presentation shared over video confrencing softwares",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js", "scripts/tessaract-min.js"],
+      "matches": [
+        "https://meet.google.com/?pli=1"
+      ]
+    }
+    ],
+    "action":{},
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions" : ["tabs", "activeTab"],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["scripts/tesseract.min.js"],
+        "matches": ["https://*/*"],
+        "use_dynamic_url": true
+      }
+    ]
+}
